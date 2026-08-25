@@ -1,0 +1,27 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Node / frontend
+node_modules/
+.next/
+out/
+
+# Data (large/regeneratable — track via scripts, not git)
+*.db
+*.sqlite3
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
