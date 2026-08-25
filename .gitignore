@@ -20,6 +20,7 @@ out/
 # Data (large/regeneratable — track via scripts, not git)
 *.db
 *.sqlite3
+backend/app/ingestion/data/
 
 # Editor/OS
 .vscode/
