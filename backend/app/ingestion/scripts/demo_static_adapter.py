@@ -1,6 +1,6 @@
 from app.ingestion.adapters.static_dataset import StaticDatasetAdapter
 
-MACBOOK_AIR_ASIN = "B08157248B"
+MACBOOK_AIR_ASIN = "B08157248B"  # just a real product id to prove fetch() actually works
 
 
 def main() -> None:

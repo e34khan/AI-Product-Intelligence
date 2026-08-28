@@ -17,13 +17,13 @@ class StaticDatasetAdapter(SourceAdapter):
                 item = json.loads(line)
 
                 if item.get("parent_asin") != product_id:
-                    continue
+                    continue  # not the product we were asked for, skip it
 
                 documents.append(Document(
                     text=item.get("text", ""),
                     source="static_dataset",
                     product_id=product_id,
-                    document_type="review",
+                    document_type="review",  # hardcoded since this adapter only ever produces reviews
                     title=item.get("title"),
                     rating=item.get("rating"),
                     timestamp=item.get("timestamp"),

@@ -14,7 +14,7 @@ METADATA_URL = (
     "raw/meta_categories/meta_Electronics.jsonl.gz"
 )
 
-TARGET_ASINS = {"B0822SL7JX", "B077BNJHVJ"}
+TARGET_ASINS = {"B0822SL7JX", "B077BNJHVJ"}  # one accessory, one real laptop, to compare
 
 
 def main() -> None:
@@ -29,7 +29,7 @@ def main() -> None:
             if asin in TARGET_ASINS:
                 found[asin] = item
             if len(found) == len(TARGET_ASINS):
-                break
+                break  # stop once both targets are found instead of scanning the rest of the file
 
     for asin, item in found.items():
         print(f"--- {asin} ---")
