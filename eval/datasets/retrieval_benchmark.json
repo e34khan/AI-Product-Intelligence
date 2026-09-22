@@ -1,0 +1,102 @@
+[
+  {
+    "question": "How is the screen quality on this laptop?",
+    "product_id": 1,
+    "relevant_chunk_ids": [748, 754, 784, 788, 800, 810]
+  },
+  {
+    "question": "How is the keyboard on this laptop?",
+    "product_id": 1,
+    "relevant_chunk_ids": [749, 771, 876, 1158, 1164, 1174]
+  },
+  {
+    "question": "Does this laptop overheat or have fan noise issues?",
+    "product_id": 1,
+    "relevant_chunk_ids": [778, 813, 814, 834, 835, 861, 886, 1196]
+  },
+  {
+    "question": "Is this laptop worth the price?",
+    "product_id": 1,
+    "relevant_chunk_ids": [747, 756, 762, 773, 775, 777, 782, 785, 788]
+  },
+  {
+    "question": "Is this a good value budget laptop?",
+    "product_id": 2,
+    "relevant_chunk_ids": [910, 912, 921, 1199, 1205, 1207]
+  },
+  {
+    "question": "Does this laptop have performance issues like freezing or running slow?",
+    "product_id": 2,
+    "relevant_chunk_ids": [904, 909, 914, 915, 917, 922, 925, 926, 928, 1198]
+  },
+  {
+    "question": "How is the keyboard on this laptop?",
+    "product_id": 3,
+    "relevant_chunk_ids": [938, 951, 1012, 1209, 1229, 1232, 1236, 1243]
+  },
+  {
+    "question": "Does this laptop overheat or have fan noise issues?",
+    "product_id": 3,
+    "relevant_chunk_ids": [954, 1193, 1232, 1263]
+  },
+  {
+    "question": "What has the seller/customer service experience been like?",
+    "product_id": 3,
+    "relevant_chunk_ids": [947, 998, 1002, 1172, 1212, 1213]
+  },
+  {
+    "question": "Is this a good value business laptop?",
+    "product_id": 3,
+    "relevant_chunk_ids": [937, 941, 962, 967, 981, 986, 1000, 1004, 1007, 1010]
+  },
+  {
+    "question": "How is the gaming performance on this laptop?",
+    "product_id": 4,
+    "relevant_chunk_ids": [1014, 1015, 1017, 1018, 1021, 1022, 1026, 1031, 1034, 1045]
+  },
+  {
+    "question": "Does this laptop overheat during gaming?",
+    "product_id": 4,
+    "relevant_chunk_ids": [1015, 1017, 1021, 1026, 1029, 1038, 1043, 1050, 1051]
+  },
+  {
+    "question": "How is the screen quality on this laptop?",
+    "product_id": 4,
+    "relevant_chunk_ids": [1023, 1026, 1031, 1032, 1040, 1044, 1046, 1048]
+  },
+  {
+    "question": "Is this laptop heavy or hard to carry around?",
+    "product_id": 4,
+    "relevant_chunk_ids": [1021, 1026, 1035, 1291, 1300, 1301]
+  },
+  {
+    "question": "How is the display/touchscreen quality on this laptop?",
+    "product_id": 5,
+    "relevant_chunk_ids": [1073, 1074, 1076, 1081, 1084, 1096, 1104, 1108]
+  },
+  {
+    "question": "Is this laptop lightweight and portable?",
+    "product_id": 5,
+    "relevant_chunk_ids": [1073, 1091, 1115, 1120, 1131]
+  },
+  {
+    "question": "How is the keyboard on this laptop?",
+    "product_id": 5,
+    "relevant_chunk_ids": [1076, 1092, 1093, 1094, 1124]
+  },
+  {
+    "question": "Does this laptop overheat or have fan noise issues?",
+    "product_id": 5,
+    "relevant_chunk_ids": [1074, 1094, 1095]
+  },
+  {
+    "question": "Does the battery drain fast?",
+    "product_id": null,
+    "relevant_chunk_ids": [850, 864, 945, 991, 1332, 1376, 1452]
+  },
+  {
+    "question": "Is this laptop fast for everyday use?",
+    "product_id": null,
+    "relevant_chunk_ids": [971, 981, 1004, 1016, 1017, 1110, 1216, 1250, 1307]
+  }
+]
