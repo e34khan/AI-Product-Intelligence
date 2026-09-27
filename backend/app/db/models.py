@@ -46,3 +46,15 @@ class Chunk(Base):
     # nullable because we insert the chunk's text first and fill this in once we run the embedding model
     embedding: Mapped[list[float] | None] = mapped_column(Vector(EMBEDDING_DIM), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class AspectSentiment(Base):
+    __tablename__ = "aspect_sentiments"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    document_id: Mapped[int] = mapped_column(ForeignKey("documents.id"))
+    product_id: Mapped[int] = mapped_column(ForeignKey("products.id"))  # same denormalization as Chunk
+    aspect: Mapped[str] = mapped_column(String)  # one of a fixed set, e.g. "battery", "keyboard"
+    sentiment: Mapped[str] = mapped_column(String)  # positive, negative, neutral, or mixed
+    quote: Mapped[str] = mapped_column(Text)  # the exact snippet backing this judgment
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
