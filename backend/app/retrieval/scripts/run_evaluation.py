@@ -49,6 +49,25 @@ def recall_at_k(retrieved_ids: list[int], relevant_ids: list[int]) -> float:
     return hits / len(relevant_ids)
 
 
+def normalized_recall_at_k(retrieved_ids: list[int], relevant_ids: list[int], k: int) -> float:
+    # caps the denominator at k, since no method can return more than k hits,
+    # even with perfect retrieval, once a question has more than k relevant
+    # chunks. answers "how close to the best possible result did we get"
+    # rather than "what fraction of everything true did we find"
+    hits = len(set(retrieved_ids) & set(relevant_ids))
+    achievable = min(k, len(relevant_ids))
+    return hits / achievable
+
+
+def precision_at_k(retrieved_ids: list[int], relevant_ids: list[int]) -> float:
+    # of what we actually returned, how much of it was correct. not capped by
+    # how many relevant chunks exist in total, unlike recall
+    if not retrieved_ids:
+        return 0.0
+    hits = len(set(retrieved_ids) & set(relevant_ids))
+    return hits / len(retrieved_ids)
+
+
 def reciprocal_rank(retrieved_ids: list[int], relevant_ids: list[int]) -> float:
     relevant_set = set(relevant_ids)
     for rank, chunk_id in enumerate(retrieved_ids, start=1):
@@ -69,7 +88,7 @@ def main() -> None:
         "hybrid+rerank": lambda q, pid: rerank_ids(session, bm25_index, q, pid, K),
     }
 
-    scores = {name: {"recall": [], "rr": []} for name in methods}
+    scores = {name: {"recall": [], "norm_recall": [], "precision": [], "rr": []} for name in methods}
 
     for example in benchmark:
         question = example["question"]
@@ -79,17 +98,27 @@ def main() -> None:
         for name, run_method in methods.items():
             retrieved_ids = run_method(question, product_id)
             scores[name]["recall"].append(recall_at_k(retrieved_ids, relevant_ids))
+            scores[name]["norm_recall"].append(normalized_recall_at_k(retrieved_ids, relevant_ids, K))
+            scores[name]["precision"].append(precision_at_k(retrieved_ids, relevant_ids))
             scores[name]["rr"].append(reciprocal_rank(retrieved_ids, relevant_ids))
 
     session.close()
 
     summary = {}
-    print(f"{'method':<15} {'Recall@' + str(K):<12} {'MRR':<10}")
+    header = f"{'method':<15} {'Recall@' + str(K):<12} {'NormRecall':<12} {'Precision@' + str(K):<14} {'MRR':<10}"
+    print(header)
     for name, method_scores in scores.items():
         avg_recall = sum(method_scores["recall"]) / len(method_scores["recall"])
+        avg_norm_recall = sum(method_scores["norm_recall"]) / len(method_scores["norm_recall"])
+        avg_precision = sum(method_scores["precision"]) / len(method_scores["precision"])
         avg_rr = sum(method_scores["rr"]) / len(method_scores["rr"])
-        summary[name] = {"recall_at_k": avg_recall, "mrr": avg_rr}
-        print(f"{name:<15} {avg_recall:<12.4f} {avg_rr:<10.4f}")
+        summary[name] = {
+            "recall_at_k": avg_recall,
+            "normalized_recall_at_k": avg_norm_recall,
+            "precision_at_k": avg_precision,
+            "mrr": avg_rr,
+        }
+        print(f"{name:<15} {avg_recall:<12.4f} {avg_norm_recall:<12.4f} {avg_precision:<14.4f} {avg_rr:<10.4f}")
 
     with open(RESULTS_PATH, "w", encoding="utf-8") as f:
         json.dump({"k": K, "num_questions": len(benchmark), "methods": summary}, f, indent=2)

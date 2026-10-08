@@ -4,18 +4,26 @@
   "methods": {
     "dense": {
       "recall_at_k": 0.23220238095238094,
+      "normalized_recall_at_k": 0.3425,
+      "precision_at_k": 0.33999999999999997,
       "mrr": 0.5075000000000001
     },
     "bm25": {
       "recall_at_k": 0.2273214285714286,
+      "normalized_recall_at_k": 0.3091666666666667,
+      "precision_at_k": 0.3,
       "mrr": 0.6125
     },
     "hybrid": {
       "recall_at_k": 0.25337301587301586,
+      "normalized_recall_at_k": 0.3625,
+      "precision_at_k": 0.36,
       "mrr": 0.5558333333333334
     },
     "hybrid+rerank": {
       "recall_at_k": 0.34501984126984125,
+      "normalized_recall_at_k": 0.4716666666666667,
+      "precision_at_k": 0.4600000000000001,
       "mrr": 0.6283333333333333
     }
   }
